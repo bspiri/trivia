@@ -1,25 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
+import Container from "react-bootstrap/Container";
+import Home from "./Components/Home";
+import Quiz from "./Components/Quiz";
+import Category from "./Components/Category";
+import User from "./Components/User";
+import Result from "./Components/Result";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
+
+/*
+
+  Home Page : Welcome  start the game let the fun begin
+  User page: username +...  Game start button
+  Category page: Choose category cards
+Quiz page: receive questions and display username & score & nr of Qs and wrongs, qustion point, highest score
+Result page: Score last 10 scores If pass max score display new record modal
+*/
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Container >
+        <Switch>
+          <Route path="/category" exact component={Category} />
+          <Route path="/user" exact component={User} />
+          <Route path="/result" exact component={Result} />
+          <Route path="/quiz/:categoryId" exact component={Quiz} />
+          <Route path="/" exact component={Home} />
+        </Switch>
+      </Container>
+    </Router>
+
   );
 }
 
